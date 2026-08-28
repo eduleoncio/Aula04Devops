@@ -1,0 +1,28 @@
+name: Pipeline Java - Aula04 TA
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  executar-java:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Baixar código
+        uses: actions/checkout@v5
+
+      - name: Configurar Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Compilar
+        run: javac Main.java Livro.java
+
+      - name: Executar
+        run: java Main
